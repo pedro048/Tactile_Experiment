@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous"
+        >
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Ubuntu&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+        
+        <!-- Font Awesome JavaScript-->
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+        <title>Tactile Experiment</title>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/imagens/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/imagens/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/imagens/fav/favicon-16x16.png">
+        <link rel="shortcut icon" href="Tactile_Glove_Experiment_QoE/favicon.ico" type="Images/x-icon">
+        <link rel="manifest" href="/imagens/fav/site.webmanifest">
+        <link rel="mask-icon" href="/imagens/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/imagens/fav/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/imagens/fav/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+        <style>
+            body {
+              background-color: #F1EAFF;
+              font-family: "Montserrat";
+            }
+
+            #carouselMain {
+              margin-top:60px;
+              margin-bottom:90px;
+            }
+
+            .imgResize {
+              width: 25%;
+              margin-bottom:30px;
+            }
+
+            .products {
+              margin-top:60px;  
+            }
+
+            .background-form_1 {
+                width: 100%;
+                max-width: 600px; /* Ajuste o tamanho máximo conforme necessário */
+                padding: 40px;
+                background-color: <%= backgroundColor_1_2 %>;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                margin: 0 auto; /* Centraliza o formulário na página */
+                margin-top: 60px; /* Espaço acima do formulário */
+                margin-bottom: 60px; /* Espaço abaixo do formulário */
+            }
+
+            .background-form_2 {
+                width: 100%;
+                max-width: 600px; /* Ajuste o tamanho máximo conforme necessário */
+                padding: 40px;
+                background-color: <%= backgroundColor_2_2 %>;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                margin: 0 auto; /* Centraliza o formulário na página */
+                margin-top: 60px; /* Espaço acima do formulário */
+                margin-bottom: 60px; /* Espaço abaixo do formulário */
+            }
+
+            .background-form_3 {
+                width: 100%;
+                max-width: 600px; /* Ajuste o tamanho máximo conforme necessário */
+                padding: 40px;
+                background-color: <%= backgroundColor_3_2 %>;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                margin: 0 auto; /* Centraliza o formulário na página */
+                margin-top: 60px; /* Espaço acima do formulário */
+                margin-bottom: 60px; /* Espaço abaixo do formulário */
+            }
+
+            .fieldset-spacing {
+                display: flex;
+                align-items: center;
+            }
+            .fieldset-spacing legend,
+            .fieldset-spacing input[type="radio"],
+            .fieldset-spacing label {
+                display: inline-block;
+                margin-right: 5px;
+            }
+
+            fieldset {
+                border: 1px solid #ccc;
+                padding: 10px;
+            }
+        
+            legend {
+                padding: 0 10px;
+                font-weight: bold;
+            }
+        
+            .fabric-option {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            .fabric-option img {
+                margin-left: 10px;
+            }
+
+            .hover-container {
+                position: relative;
+                display: inline-block;
+            }
+
+            .hover-container img {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 10;
+            }
+
+            .hover-container label:hover + img {
+                display: block;
+            }
+
+            .fieldset-content {
+                margin-top: 20px; /* Ajuste este valor conforme necessário */
+            }
+
+            .top-forms {
+                display: flex;
+                justify-content: space-between; /* Espaçamento entre os formulários */
+                gap: 20px; /* Espaçamento entre os formulários */
+                margin-bottom: 1%;
+            }
+
+            .container_forms {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                margin-left: 40px;
+            }
+
+            .img-row-all_1{
+                width: 450px;
+                height: 470px;
+            }
+
+            .col-1{
+                width: 450px;
+                height: 420px;
+            }
+
+            .img-col{
+                float: left;
+            }
+
+            .nav-table {
+                width: 100%;
+                margin-top: 20px; /* Espaço acima dos botões */
+            }
+
+            .nav-table td {
+                text-align: center;
+            }
+
+            .btn a {
+                color: #fff;
+                text-decoration: none;
+            }
+
+        </style>
+    </head>
+
+    <body style="min-width: 372px">
+        <div class="d-flex flex-column wrapper">
+            
+            <%- include('navbar') %>
+            
+            <main class="flex-fill">  
+
+                <div class="container text-center products">
+                    <h1 class="container text-center">Level 2 (Frequency)</h1>
+
+                        <br>
+                        <br> 
+
+                    <ul class="justify-content-center">
+                        
+                        <div class="row">
+
+                            <div class="col-12 col-md-3 col-xl-3 col-lg-3 col-sm-6 d-flex align-items-stretch imgResize">
+                                <div class="card text-center bg-light">
+                                    <img src="/website_img/Level_2_Frequency.jpg" alt="" width="297" height="420" class="card-img-top" usemap="#workmap"/>  
+                                  <div class="card-footer">
+                                    <table class="nav-table">
+                                        <tr>
+                                          <td style="text-align: left;">
+                                            <form>
+                                              <button type="button" class="btn btn-dark">
+                                                <a href="/views/Level_1_Frequency.ejs">Previous</a>
+                                              </button>
+                                            </form>
+                                          </td>
+                                          <td style="text-align: right;">
+                                            <form>
+                                              <button type="button" class="btn btn-dark">
+                                                <a href="/views/Level_3_Frequency.ejs">Next</a>
+                                              </button>
+                                            </form>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    <br>
+                                    <form>
+                                        <button class="btn btn-dark">
+                                          <a href="/views/indeex.ejs" class="nav-link text-light">Homepage</a>
+                                        </button>
+                                    </form>
+                                  </div>
+                                </div>
+                            </div> 
+
+                            <div class="col-12 col-md-3 col-xl-3 col-lg-3 col-sm-6 d-flex align-items-stretch imgResize">
+                                <div class="card text-center bg-light">
+                                    <form class="background-form_1 mb-3 text-center" action="/duroMacio" method="post">
+                                        <fieldset class="text-center">
+                                            <legend>Duro</legend>
+                            
+                                            <input type="radio" id="1" name="duro_macio" value="1">
+                                            <label for="1">1</label>
+                                
+                                            <input type="radio" id="2" name="duro_macio" value="2">
+                                            <label for="2">2</label>
+                                
+                                            <input type="radio" id="3" name="duro_macio" value="3">
+                                            <label for="3">3</label>
+                                
+                                            <input type="radio" id="4" name="duro_macio" value="4">
+                                            <label for="4">4</label>
+                                
+                                            <input type="radio" id="5" name="duro_macio" value="5">
+                                            <label for="5">5</label>
+                                
+                                            <input type="radio" id="6" name="duro_macio" value="6">
+                                            <label for="6">6</label>
+                                
+                                            <input type="radio" id="7" name="duro_macio" value="7">
+                                            <label for="7">7</label>
+                            
+                                            <legend>Macio</legend>
+                                        </fieldset>
+    
+                                        <br>
+    
+                                            <fieldset class="text-center">
+                                                <legend>Muito irreal</legend>
+                                
+                                                <input type="radio" id="1" name="duroMacio_irreal_real" value="1">
+                                                <label for="1">1</label>
+                                    
+                                                <input type="radio" id="2" name="duroMacio_irreal_real" value="2">
+                                                <label for="2">2</label>
+                                    
+                                                <input type="radio" id="3" name="duroMacio_irreal_real" value="3">
+                                                <label for="3">3</label>
+                                    
+                                                <input type="radio" id="4" name="duroMacio_irreal_real" value="4">
+                                                <label for="4">4</label>
+                                    
+                                                <input type="radio" id="5" name="duroMacio_irreal_real" value="5">
+                                                <label for="5">5</label>
+                                    
+                                                <input type="radio" id="6" name="duroMacio_irreal_real" value="6">
+                                                <label for="6">6</label>
+                                    
+                                                <input type="radio" id="7" name="duroMacio_irreal_real" value="7">
+                                                <label for="7">7</label>
+                                
+                                                <legend>Muito real</legend>
+                                            </fieldset>
+    
+                                            <br>
+    
+                                            <fieldset class="fieldset-spacing text-center">
+                                                <div class="fieldset-content">
+                                                    <legend class="legend-spacing">Tecido</legend>
+                                
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="tricô_grosso" name="duroMacio_tecido" value="tricô grosso">
+                                                        <label for="tricô_grosso">Tricô grosso</label>
+                                                        <img src="/website_img/trico_grosso.jpg" width="220" height="200" alt="Imagem de Tricô Grosso">
+                                                    </div>    
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="tricô_fino" name="duroMacio_tecido" value="tricô fino">
+                                                        <label for="tricô_fino">Tricô fino</label>
+                                                        <img src="/website_img/trico_fino.jpg" width="220" height="200" alt="Imagem de Tricô Fino">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="seda" name="duroMacio_tecido" value="seda">
+                                                        <label for="seda">Seda</label>
+                                                        <img src="/website_img/seda.jpg" width="220" height="200" alt="Imagem de Seda">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="algodão" name="duroMacio_tecido" value="algodão">
+                                                        <label for="algodão">Algodão</label>
+                                                        <img src="/website_img/algodao.jpg" width="220" height="200" alt="Imagem de Algodao">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="lã" name="duroMacio_tecido" value="lã">
+                                                        <label for="lã">Lã</label>
+                                                        <img src="/website_img/lã.jpg" width="220" height="200" alt="Imagem de Lã">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="nenhum" name="duroMacio_tecido" value="nenhum">
+                                                        <label for="nenhum">Nenhum</label>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+    
+                                            <br>
+    
+                                            <fieldset class="fieldset-spacing text-center">
+                                                <div class="fieldset-content">
+                                                    <legend class="legend-spacing">Material</legend>
+                                
+                                                    <div class="hover-container">    
+                                                        <input type="radio" id="pedregulhos_grossos" name="duroMacio_material" value="pedregulhos grossos">
+                                                        <label for="pedregulhos_grossos">Pedregulhos grossos</label>
+                                                        <img src="/website_img/pedregulhos_grossos.jpg" width="220" height="200" alt="Imagem de Pedregulhos Grossos">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="pedregulhos_finos" name="duroMacio_material" value="pedregulhos finos">
+                                                        <label for="pedregulhos_finos">Pedregulhos finos</label>
+                                                        <img src="/website_img/pedregulhos_finos.jpg" width="220" height="200" alt="Imagem de Pedregulhos Finos">
+                                                    </div>    
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="seda" name="duroMacio_material" value="papel">
+                                                        <label for="papel">Papel</label>
+                                                        <img src="/website_img/papel.jpg" width="220" height="200" alt="Imagem de Papel">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="algodão" name="duroMacio_material" value="borracha">
+                                                        <label for="borracha">Borracha</label>
+                                                        <img src="/website_img/borracha.jpg" width="220" height="200" alt="Imagem de Borracha">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="lã" name="duroMacio_material" value="vidro">
+                                                        <label for="vidro">Vidro</label>
+                                                        <img src="/website_img/vidro.jpg" width="220" height="200" alt="Imagem de Vidro">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="nenhum" name="duroMacio_material" value="nenhum">
+                                                        <label for="nenhum">Nenhum</label>
+                                                    </div>
+                                                </div>    
+                                            </fieldset>
+    
+                                            <br>
+
+                                            <input type="hidden" size="1" required name="id_level_1" value="" placeholder="">
+                                            <input type="hidden" size="1" required name="id_type_1" value="" placeholder="">
+                                            <button class="btn btn-outline-primary" style="display:none" type="submit" required name="insert_level_type_1">
+                                            </button>
+
+                                            <br>
+                                            
+                                        <button type="submit" class="btn btn-dark button_form_1">Enviar</button>
+                                    </form>
+                              </div> 
+                              </div>
+
+
+                              <div class="col-12 col-md-3 col-xl-3 col-lg-3 col-sm-6 d-flex align-items-stretch imgResize">
+                                <div class="card text-center bg-light">
+                                    <form class="mb-3 background-form_2 text-center" action="/rugosoLiso" method="post">
+                                        <fieldset>
+                                            <legend>Rugoso</legend>
+                            
+                                            <input type="radio" id="1" name="rugoso_liso" value="1">
+                                            <label for="1">1</label>
+                                
+                                            <input type="radio" id="2" name="rugoso_liso" value="2">
+                                            <label for="2">2</label>
+                                
+                                            <input type="radio" id="3" name="rugoso_liso" value="3">
+                                            <label for="3">3</label>
+                                
+                                            <input type="radio" id="4" name="rugoso_liso" value="4">
+                                            <label for="4">4</label>
+                                
+                                            <input type="radio" id="5" name="rugoso_liso" value="5">
+                                            <label for="5">5</label>
+                                
+                                            <input type="radio" id="6" name="rugoso_liso" value="6">
+                                            <label for="6">6</label>
+                                
+                                            <input type="radio" id="7" name="rugoso_liso" value="7">
+                                            <label for="7">7</label>
+                            
+                                            <legend>Liso</legend>
+                                        </fieldset>
+    
+                                        <br>
+    
+                                            <fieldset class="text-center">
+                                                <legend>Muito irreal</legend>
+                                
+                                                <input type="radio" id="1" name="rugosoLiso_irreal_real" value="1">
+                                                <label for="1">1</label>
+                                    
+                                                <input type="radio" id="2" name="rugosoLiso_irreal_real" value="2">
+                                                <label for="2">2</label>
+                                    
+                                                <input type="radio" id="3" name="rugosoLiso_irreal_real" value="3">
+                                                <label for="3">3</label>
+                                    
+                                                <input type="radio" id="4" name="rugosoLiso_irreal_real" value="4">
+                                                <label for="4">4</label>
+                                    
+                                                <input type="radio" id="5" name="rugosoLiso_irreal_real" value="5">
+                                                <label for="5">5</label>
+                                    
+                                                <input type="radio" id="6" name="rugosoLiso_irreal_real" value="6">
+                                                <label for="6">6</label>
+                                    
+                                                <input type="radio" id="7" name="rugosoLiso_irreal_real" value="7">
+                                                <label for="7">7</label>
+                                
+                                                <legend>Muito real</legend>
+                                            </fieldset>
+    
+                                            <br>
+    
+                                            <fieldset class="fieldset-spacing text-center">
+                                                <div class="fieldset-content">
+                                                    <legend class="legend-spacing">Tecido</legend>
+                                
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="tricô_grosso" name="rugosoLiso_tecido" value="tricô grosso">
+                                                        <label for="tricô_grosso">Tricô grosso</label>
+                                                        <img src="/website_img/trico_grosso.jpg" width="220" height="200" alt="Imagem de Tricô Grosso">
+                                                    </div>    
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="tricô_fino" name="rugosoLiso_tecido" value="tricô fino">
+                                                        <label for="tricô_fino">Tricô fino</label>
+                                                        <img src="/website_img/trico_fino.jpg" width="220" height="200" alt="Imagem de Tricô Fino">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="seda" name="rugosoLiso_tecido" value="seda">
+                                                        <label for="seda">Seda</label>
+                                                        <img src="/website_img/seda.jpg" width="220" height="200" alt="Imagem de Seda">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="algodão" name="rugosoLiso_tecido" value="algodão">
+                                                        <label for="algodão">Algodão</label>
+                                                        <img src="/website_img/algodao.jpg" width="220" height="200" alt="Imagem de Algodao">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="lã" name="rugosoLiso_tecido" value="lã">
+                                                        <label for="lã">Lã</label>
+                                                        <img src="/website_img/lã.jpg" width="220" height="200" alt="Imagem de Lã">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="nenhum" name="rugosoLiso_tecido" value="nenhum">
+                                                        <label for="nenhum">Nenhum</label>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+    
+                                            <br>
+    
+                                            <fieldset class="fieldset-spacing text-center">
+                                                <div class="fieldset-content">
+                                                    <legend class="legend-spacing">Material</legend>
+                                
+                                                    <div class="hover-container">    
+                                                        <input type="radio" id="pedregulhos_grossos" name="rugosoLiso_material" value="pedregulhos grossos">
+                                                        <label for="pedregulhos_grossos">Pedregulhos grossos</label>
+                                                        <img src="/website_img/pedregulhos_grossos.jpg" width="220" height="200" alt="Imagem de Pedregulhos Grossos">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="pedregulhos_finos" name="rugosoLiso_material" value="pedregulhos finos">
+                                                        <label for="pedregulhos_finos">Pedregulhos finos</label>
+                                                        <img src="/website_img/pedregulhos_finos.jpg" width="220" height="200" alt="Imagem de Pedregulhos Finos">
+                                                    </div>    
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="seda" name="rugosoLiso_material" value="papel">
+                                                        <label for="papel">Papel</label>
+                                                        <img src="/website_img/papel.jpg" width="220" height="200" alt="Imagem de Papel">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="algodão" name="rugosoLiso_material" value="borracha">
+                                                        <label for="borracha">Borracha</label>
+                                                        <img src="/website_img/borracha.jpg" width="220" height="200" alt="Imagem de Borracha">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="lã" name="rugosoLiso_material" value="vidro">
+                                                        <label for="vidro">Vidro</label>
+                                                        <img src="/website_img/vidro.jpg" width="220" height="200" alt="Imagem de Vidro">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="nenhum" name="rugosoLiso_material" value="nenhum">
+                                                        <label for="nenhum">Nenhum</label>
+                                                    </div>
+                                                </div>    
+                                            </fieldset>
+    
+                                            <br>
+
+                                            <input type="hidden" size="1" required name="id_level_2" value="" placeholder="">
+                                            <input type="hidden" size="1" required name="id_type_2" value="" placeholder="">
+                                            <button class="btn btn-outline-primary" style="display:none" type="submit" required name="insert_level_type_2">
+                                            </button>
+
+                                            <br>
+                                            
+                                        <button type="submit" class="btn btn-dark button_form_2">Enviar</button>
+                                    </form>
+                              </div> 
+                              </div> 
+                          
+                              <div class="col-12 col-md-3 col-xl-3 col-lg-3 col-sm-6 d-flex align-items-stretch imgResize">
+                                <div class="card text-center bg-light">
+                                    <form class="mb-3 background-form_3 text-center" action="/rugosidadesGrossaFina" method="post">
+                                        <fieldset class="text-center">
+                                            <legend>Rugosidades</legend>
+                                            <div class="fieldset-content">
+                                                <legend class="legend-spacing">Grossa</legend>
+                            
+                                                <input type="radio" id="1" name="Rgrossa_Rfina" value="1">
+                                                <label for="1">1</label>
+                                
+                                                <input type="radio" id="2" name="Rgrossa_Rfina" value="2">
+                                                <label for="2">2</label>
+                                
+                                                <input type="radio" id="3" name="Rgrossa_Rfina" value="3">
+                                                <label for="3">3</label>
+                                
+                                                <input type="radio" id="4" name="Rgrossa_Rfina" value="4">
+                                                <label for="4">4</label>
+                                
+                                                <input type="radio" id="5" name="Rgrossa_Rfina" value="5">
+                                                <label for="5">5</label>
+                                
+                                                <input type="radio" id="6" name="Rgrossa_Rfina" value="6">
+                                                <label for="6">6</label>
+                                
+                                                <input type="radio" id="7" name="Rgrossa_Rfina" value="7">
+                                                <label for="7">7</label>
+                                            </div>
+                                            <legend>Fina</legend>
+                                        </fieldset>
+    
+                                        <br>
+    
+                                            <fieldset class="text-center">
+                                                <legend>Muito irreal</legend>
+                                
+                                                <input type="radio" id="1" name="rugosidadesGrossaFina_irreal_real" value="1">
+                                                <label for="1">1</label>
+                                    
+                                                <input type="radio" id="2" name="rugosidadesGrossaFina_irreal_real" value="2">
+                                                <label for="2">2</label>
+                                    
+                                                <input type="radio" id="3" name="rugosidadesGrossaFina_irreal_real" value="3">
+                                                <label for="3">3</label>
+                                    
+                                                <input type="radio" id="4" name="rugosidadesGrossaFina_irreal_real" value="4">
+                                                <label for="4">4</label>
+                                    
+                                                <input type="radio" id="5" name="rugosidadesGrossaFina_irreal_real" value="5">
+                                                <label for="5">5</label>
+                                    
+                                                <input type="radio" id="6" name="rugosidadesGrossaFina_irreal_real" value="6">
+                                                <label for="6">6</label>
+                                    
+                                                <input type="radio" id="7" name="rugosidadesGrossaFina_irreal_real" value="7">
+                                                <label for="7">7</label>
+                                
+                                                <legend>Muito real</legend>
+                                            </fieldset>
+    
+                                            <br>
+    
+                                            <fieldset class="fieldset-spacing text-center">
+                                                <div class="fieldset-content">
+                                                    <legend class="legend-spacing">Tecido</legend>
+                                
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="tricô_grosso" name="rugosidadesGrossaFina_tecido" value="tricô grosso">
+                                                        <label for="tricô_grosso">Tricô grosso</label>
+                                                        <img src="/website_img/trico_grosso.jpg" width="220" height="200" alt="Imagem de Tricô Grosso">
+                                                    </div>    
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="tricô_fino" name="rugosidadesGrossaFina_tecido" value="tricô fino">
+                                                        <label for="tricô_fino">Tricô fino</label>
+                                                        <img src="/website_img/trico_fino.jpg" width="220" height="200" alt="Imagem de Tricô Fino">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="seda" name="rugosidadesGrossaFina_tecido" value="seda">
+                                                        <label for="seda">Seda</label>
+                                                        <img src="/website_img/seda.jpg" width="220" height="200" alt="Imagem de Seda">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="algodão" name="rugosidadesGrossaFina_tecido" value="algodão">
+                                                        <label for="algodão">Algodão</label>
+                                                        <img src="/website_img/algodao.jpg" width="220" height="200" alt="Imagem de Algodao">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="lã" name="rugosidadesGrossaFina_tecido" value="lã">
+                                                        <label for="lã">Lã</label>
+                                                        <img src="/website_img/lã.jpg" width="220" height="200" alt="Imagem de Lã">
+                                                    </div>
+                                        
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="nenhum" name="rugosidadesGrossaFina_tecido" value="nenhum">
+                                                        <label for="nenhum">Nenhum</label>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+    
+                                            <br>
+    
+                                            <fieldset class="fieldset-spacing text-center">
+                                                <div class="fieldset-content">
+                                                    <legend class="legend-spacing">Material</legend>
+                                
+                                                    <div class="hover-container">    
+                                                        <input type="radio" id="pedregulhos_grossos" name="rugosidadesGrossaFina_material" value="pedregulhos grossos">
+                                                        <label for="pedregulhos_grossos">Pedregulhos grossos</label>
+                                                        <img src="/website_img/pedregulhos_grossos.jpg" width="220" height="200" alt="Imagem de Pedregulhos Grossos">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="pedregulhos_finos" name="rugosidadesGrossaFina_material" value="pedregulhos finos">
+                                                        <label for="pedregulhos_finos">Pedregulhos finos</label>
+                                                        <img src="/website_img/pedregulhos_finos.jpg" width="220" height="200" alt="Imagem de Pedregulhos Finos">
+                                                    </div>    
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="seda" name="rugosidadesGrossaFina_material" value="papel">
+                                                        <label for="papel">Papel</label>
+                                                        <img src="/website_img/papel.jpg" width="220" height="200" alt="Imagem de Papel">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="algodão" name="rugosidadesGrossaFina_material" value="borracha">
+                                                        <label for="borracha">Borracha</label>
+                                                        <img src="/website_img/borracha.jpg" width="220" height="200" alt="Imagem de Borracha">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="lã" name="rugosidadesGrossaFina_material" value="vidro">
+                                                        <label for="vidro">Vidro</label>
+                                                        <img src="/website_img/vidro.jpg" width="220" height="200" alt="Imagem de Vidro">
+                                                    </div>
+                                    
+                                                    <div class="hover-container">
+                                                        <input type="radio" id="nenhum" name="rugosidadesGrossaFina_material" value="nenhum">
+                                                        <label for="nenhum">Nenhum</label>
+                                                    </div>
+                                                </div>    
+                                            </fieldset>
+    
+                                            <br>
+
+                                            <input type="hidden" size="1" required name="id_level_3" value="" placeholder="">
+                                            <input type="hidden" size="1" required name="id_type_3" value="" placeholder="">
+                                            <button class="btn btn-outline-primary" style="display:none" type="submit" required name="insert_level_type_3">
+                                            </button>
+
+                                            <br>
+                                            
+                                        <button type="submit" class="btn btn-dark button_form_3">Enviar</button>
+                                    </form>
+                              </div> 
+                              </div>
+                        </div>
+                        
+                        <map name="workmap">
+                            <area shape="rect" coords="14,21,281,400" alt="absence_of_sensation" href="" onmouseover="hoverFunction_tactile_sensations()">
+                            <area shape="rect" coords="0,0,13,418" alt="tactile_sensations" href="" onmouseover="hoverFunction_absence_of_sensation()">
+                            <area shape="rect" coords="283,0,296,418" alt="tactile_sensations" href="" onmouseover="hoverFunction_absence_of_sensation()">
+                            <area shape="rect" coords="283,3,12,20" alt="tactile_sensations" href="" onmouseover="hoverFunction_absence_of_sensation()">
+                            <area shape="rect" coords="285,401,14,418" alt="tactile_sensations" href="" onmouseover="hoverFunction_absence_of_sensation()">
+                        </map>
+
+                        <table cellspacing="10" class="centralization">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <form action="/absence_of_sensation" method="post">
+                                            <input type="hidden" size="1" required name="id_absence_of_sensation" value="" placeholder="">
+                                            <button class="btn btn-outline-primary" style="display:none" type="submit" required name="insert_absence_of_sensation">
+                                            </button>
+                                        </form> 
+                                    </td>
+                                    <td>
+                                        <form action="/tactile_sensations" method="post">
+                                            <input type="hidden" size="1" required name="id_tactile_sensations" value="" placeholder="">
+                                            <button class="btn btn-outline-primary" style="display:none" type="submit" required name="insert_tactile_sensations">
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+    
+                          
+            </main>
+            
+            <%- include('footer') %>
+            
+        </div>
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            document.getElementById('loginButton').addEventListener('click', function() {
+              window.location.href = '/views/login.ejs';
+            });
+            
+            document.getElementById('registryButton').addEventListener('click', function() {
+              window.location.href = '/views/registration.ejs';
+            });
+
+            document.getElementById('aboutWebPage').addEventListener('click', function() {
+              window.location.href = '/views/about.ejs';
+            });
+
+            //-----------------------
+
+            function submitForm_1() {
+                document.querySelector("[name='id_level_1']").value = '2';
+                document.querySelector("[name='id_type_1']").value = 'Frequency';
+                var button = document.querySelector("[name='insert_level_type_1']");
+                button.click();
+            }
+
+            document.querySelector(".button_form_1").addEventListener("click", function(event) {
+                event.preventDefault(); 
+                submitForm_1(); 
+            });
+
+            //-----------------------
+
+            function submitForm_2() {
+                document.querySelector("[name='id_level_2']").value = '2';
+                document.querySelector("[name='id_type_2']").value = 'Frequency';
+                var button = document.querySelector("[name='insert_level_type_2']");
+                button.click();
+            }
+            
+            document.querySelector(".button_form_2").addEventListener("click", function(event) {
+                event.preventDefault(); 
+                submitForm_2(); 
+            });
+
+            //-----------------------
+
+            function submitForm_3() {
+                document.querySelector("[name='id_level_3']").value = '2';
+                document.querySelector("[name='id_type_3']").value = 'Frequency';
+                var button = document.querySelector("[name='insert_level_type_3']");
+                button.click();
+            }
+
+            document.querySelector(".button_form_3").addEventListener("click", function(event) {
+                event.preventDefault(); 
+                submitForm_3(); 
+            });
+
+            //-----------------------------------------------------------------------------------
+
+            function hoverFunction_absence_of_sensation(){
+                document.querySelector("[name='id_absence_of_sensation']").value = '0';
+                var button = document.querySelector("[name='insert_absence_of_sensation']");
+                button.click();  
+            }   
+
+            function hoverFunction_tactile_sensations(){  
+                document.querySelector("[name='id_tactile_sensations']").value = '2';
+                var button = document.querySelector("[name='insert_tactile_sensations']");
+                button.click();
+            } 
+             
+        </script>
+    </body>
+</html>
+
