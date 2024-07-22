@@ -170,10 +170,20 @@
                 text-decoration: none;
             }
 
+            #touch_sensor{
+                position: absolute;
+                z-index: 5;
+            }
+
         </style>
     </head>
 
     <body style="min-width: 372px">
+
+        <div id="touch_sensor" style="display: none;">
+            <img src="/website_img/Touch_Sensor.jpg" width="120" height="35" />
+        </div>
+
         <div class="d-flex flex-column wrapper">
             
             <%- include('navbar') %>
@@ -704,11 +714,11 @@
                         </div>
                         
                         <map name="workmap">
-                            <area shape="rect" coords="14,21,281,400" alt="absence_of_sensation" href="" onmouseover="hoverFunction_tactile_sensations()">
-                            <area shape="rect" coords="0,0,13,418" alt="tactile_sensations" href="" onmouseover="hoverFunction_absence_of_sensation()">
-                            <area shape="rect" coords="283,0,296,418" alt="tactile_sensations" href="" onmouseover="hoverFunction_absence_of_sensation()">
-                            <area shape="rect" coords="283,3,12,20" alt="tactile_sensations" href="" onmouseover="hoverFunction_absence_of_sensation()">
-                            <area shape="rect" coords="285,401,14,418" alt="tactile_sensations" href="" onmouseover="hoverFunction_absence_of_sensation()">
+                            <area shape="rect" coords="14,21,281,400" alt="tactile_sensations" href="" onmouseover="hoverFunction_tactile_sensations(), touchSensor()">
+                            <area shape="rect" coords="0,0,13,418" alt="absence_of_sensation" href="" onmouseover="hoverFunction_absence_of_sensation(), withoutTouchSensor()">
+                            <area shape="rect" coords="283,0,296,418" alt="absence_of_sensation" href="" onmouseover="hoverFunction_absence_of_sensation(), withoutTouchSensor()">
+                            <area shape="rect" coords="283,3,12,20" alt="absence_of_sensation" href="" onmouseover="hoverFunction_absence_of_sensation(), withoutTouchSensor()">
+                            <area shape="rect" coords="285,401,14,418" alt="absence_of_sensation" href="" onmouseover="hoverFunction_absence_of_sensation(), withoutTouchSensor()">
                         </map>
 
                         <table cellspacing="10" class="centralization">
@@ -808,7 +818,42 @@
                 document.querySelector("[name='id_tactile_sensations']").value = '4';
                 var button = document.querySelector("[name='insert_tactile_sensations']");
                 button.click();
-            } 
+            }
+            
+            //-----------------------------------------------------------------------------------
+
+            var currentEvent;
+            var x_passive=0, y_passive=0;
+            var touchSensorDisplay, touchSensorMovement;
+
+            function touchSensor(){
+                document.querySelectorAll('*').forEach(function(elem) {
+                    elem.style.cursor = 'grab';
+                });
+
+                touchSensorDisplay = document.getElementById('touch_sensor');
+                touchSensorDisplay.style.display = 'block';
+                   
+                document.documentElement.onmousemove=function(e){
+                    x_passive = e.pageX;
+                    y_passive = e.pageY;
+                   
+                    touchSensorMovement = document.getElementById("touch_sensor");
+                    touchSensorMovement.style.left = (x_passive + 10) + "px";
+                    touchSensorMovement.style.top = (y_passive + 10) + "px";
+                
+                    currentEvent=e;
+                }
+            }
+            
+            function withoutTouchSensor(){
+                document.querySelectorAll('*').forEach(function(elem) {
+                    elem.style.cursor = 'default';
+                });
+                
+                touchSensorDisplay = document.getElementById('touch_sensor');
+                touchSensorDisplay.style.display = 'none';
+            }
              
         </script>
     </body>
