@@ -7,7 +7,6 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-
 const uriConn1 = process.env.MONGODB_URI_CONN1;
 
 const uriConn2 = process.env.MONGODB_URI_CONN2;
@@ -194,7 +193,11 @@ const expTactileSensationsSchema = {
    highPulseMs: String,
    lowPulseMs: String,
    hp: Number,
-   lp: Number
+   lp: Number,
+   hp_ms: Number,
+   lp_ms: Number,
+   t: Number,
+   d: Number   
 }
 
 const ExpTactileSensation = conn2.model("ExpTactileSensation", expTactileSensationsSchema);
@@ -210,6 +213,28 @@ const HighPulseLowPulseData = conn3.model('HighPulseLowPulseData', highPulseLowP
 
 //--------------------------------------------------------------------------------------------
 
+const highPulseLowPulseMsDataSchema = {
+   hp_ms: Number,
+   lp_ms: Number,
+   t: Number,
+   d: Number
+}
+
+const HighPulseLowPulseMsData = conn3.model('HighPulseLowPulseMsData', highPulseLowPulseMsDataSchema);
+
+//--------------------------------------------------------------------------------------------
+
+const highPulse_LowPulse_Ms = new HighPulseLowPulseMsData({
+   hp_ms: 1,
+   lp_ms: 1,
+   t: 1,
+   d: 1
+});
+
+//highPulse_LowPulse_Ms.save();
+
+//--------------------------------------------------------------------------------------------
+
 const level_0 = new ExpTactileSensation({
    id_tactile: "0",
    vibrationLevel: "Level 0",
@@ -218,141 +243,71 @@ const level_0 = new ExpTactileSensation({
    highPulseMs: "0ms",
    lowPulseMs: "0ms",
    hp: 0,
-   lp: 0
+   lp: 0,
+   hp_ms: 0,
+   lp_ms: 0,
+   t: 0,
+   d: 0
 });
 
 const level_1_frequency = new ExpTactileSensation({
    id_tactile: "1",
    vibrationLevel: "Level 1 (Frequency)",
    frequency: "4Hz",
-   dutyCycle: "46.68%",
-   highPulseMs: "116.7ms",
-   lowPulseMs: "133.3ms",
-   hp: 449,
-   lp: 513
+   dutyCycle: "67%",
+   highPulseMs: "167ms",
+   lowPulseMs: "83ms",
+   hp: 642,
+   lp: 319,
+   hp_ms: 167,
+   lp_ms: 83,
+   t: 250,
+   d: 67
 });
 
 const level_2_frequency = new ExpTactileSensation({
    id_tactile: "2",
    vibrationLevel: "Level 2 (Frequency)",
    frequency: "9Hz",
-   dutyCycle: "46.68%",
-   highPulseMs: "51.9ms",
-   lowPulseMs: "59.21ms",
-   hp: 200,
-   lp: 228
+   dutyCycle: "67%",
+   highPulseMs: "74ms",
+   lowPulseMs: "37ms",
+   hp: 285,
+   lp: 142,
+   hp_ms: 74,
+   lp_ms: 37,
+   t: 111,
+   d: 67
 });
 
 const level_3_frequency = new ExpTactileSensation({
    id_tactile: "3",
    vibrationLevel: "Level 3 (Frequency)",
-   frequency: "15Hz",
-   dutyCycle: "46.68%",
-   highPulseMs: "31.12ms",
-   lowPulseMs: "35.55ms",
-   hp: 120,
-   lp: 137
+   frequency: "20Hz",
+   dutyCycle: "67%",
+   highPulseMs: "33ms",
+   lowPulseMs: "17ms",
+   hp: 127,
+   lp: 65,
+   hp_ms: 33,
+   lp_ms: 17,
+   t: 50,
+   d: 67
 });
 
 const level_4_frequency = new ExpTactileSensation({
    id_tactile: "4",
    vibrationLevel: "Level 4 (Frequency)",
-   frequency: "20Hz",
-   dutyCycle: "46.68%",
-   highPulseMs: "23.34ms",
-   lowPulseMs: "26.66ms",
-   hp: 90,
-   lp: 102
-});
-
-const level_5_frequency = new ExpTactileSensation({
-   id_tactile: "5",
-   vibrationLevel: "Level 5 (Frequency)",
-   frequency: "65Hz",
-   dutyCycle: "46.68%",
-   highPulseMs: "7.18ms",
-   lowPulseMs: "8.2ms",
-   hp: 28,
-   lp: 32
-});
-
-const level_6_frequency = new ExpTactileSensation({
-   id_tactile: "6",
-   vibrationLevel: "Level 6 (Frequency)",
-   frequency: "333Hz",
-   dutyCycle: "46.68%",
-   highPulseMs: "1.4ms",
-   lowPulseMs: "1.6ms",
-   hp: 5,
-   lp: 6
-});
-
-//-----------------------------------------------------------------------------------------
-
-const level_1_dutyCycle = new ExpTactileSensation({
-   id_tactile: "7",
-   vibrationLevel: "Level 1 (Duty Cycle)",
-   frequency: "333Hz",
-   dutyCycle: "19%",
-   highPulseMs: "0.57ms",
-   lowPulseMs: "2.43ms",
-   hp: 2,
-   lp: 9
-});
-
-const level_2_dutyCycle = new ExpTactileSensation({
-   id_tactile: "8",
-   vibrationLevel: "Level 2 (Duty Cycle)",
-   frequency: "333Hz",
-   dutyCycle: "25%",
-   highPulseMs: "0.75ms",
-   lowPulseMs: "2.25ms",
-   hp: 3,
-   lp: 9
-});
-
-const level_3_dutyCycle = new ExpTactileSensation({
-   id_tactile: "9",
-   vibrationLevel: "Level 3 (Duty Cycle)",
-   frequency: "333Hz",
-   dutyCycle: "35%",
-   highPulseMs: "1.05ms",
-   lowPulseMs: "1.95ms",
-   hp: 4,
-   lp: 8
-});
-
-const level_4_dutyCycle = new ExpTactileSensation({
-   id_tactile: "10",
-   vibrationLevel: "Level 4 (Duty Cycle)",
-   frequency: "333Hz",
-   dutyCycle: "46.68%",
-   highPulseMs: "1.4ms",
-   lowPulseMs: "1.6ms",
-   hp: 5,
-   lp: 6
-});
-
-const level_5_dutyCycle = new ExpTactileSensation({
-   id_tactile: "11",
-   vibrationLevel: "Level 5 (Duty Cycle)",
-   frequency: "333Hz",
-   dutyCycle: "73.35%",
-   highPulseMs: "2.2ms",
-   lowPulseMs: "0.8ms",
-   hp: 8,
-   lp: 3
-});
-
-const level_6_dutyCycle = new ExpTactileSensation({
-   id_tactile: "12",
-   vibrationLevel: "Level 6 (Duty Cycle)",
-   frequency: "333Hz",
-   dutyCycle: "95%",
-   highPulseMs: "2.85ms",
-   lowPulseMs: "0.15ms",
-   hp: 11,
-   lp: 1
+   frequency: "30Hz",
+   dutyCycle: "67%",
+   highPulseMs: "22ms",
+   lowPulseMs: "11ms",
+   hp: 85,
+   lp: 42,
+   hp_ms: 22,
+   lp_ms: 11,
+   t: 33,
+   d: 67
 });
 
 //-----------------------------------------------------------------------------------------
@@ -462,6 +417,11 @@ var failureLogIn;
 
 var hp_value; 
 var lp_value; 
+
+var hp_ms;
+var lp_ms;
+var t;
+var d;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
@@ -844,7 +804,11 @@ function readFromDatabase(id_vibration_level){
              
             hp_value = exptactilesensation.hp;
             lp_value = exptactilesensation.lp;
-            sendTactileSensation(hp_value, lp_value)   
+            hp_ms = exptactilesensation.hp_ms;
+            lp_ms = exptactilesensation.lp_ms;
+            t = exptactilesensation.t;
+            d = exptactilesensation.d;
+            sendTactileSensation(hp_value, lp_value, hp_ms, lp_ms, t, d)   
          });
       }    
    });
@@ -852,7 +816,7 @@ function readFromDatabase(id_vibration_level){
 
 //-----------------------
 
-function sendTactileSensation(hp_value, lp_value){
+function sendTactileSensation(hp_value, lp_value, hp_ms, lp_ms, t, d){
 
    var hp = hp_value + 2000;
    var lp = lp_value + 9000;
@@ -873,7 +837,31 @@ function sendTactileSensation(hp_value, lp_value){
       if (err){
          console.log(err);
       }
-   });   
+   }); 
+   
+   HighPulseLowPulseMsData.findByIdAndUpdate("66a561cb4bb896edbb542cd0", { hp_ms: hp_ms }, function(err){
+      if (err){
+         console.log(err);
+      }
+   });
+   
+   HighPulseLowPulseMsData.findByIdAndUpdate("66a561cb4bb896edbb542cd0", { lp_ms: lp_ms }, function(err){
+      if (err){
+         console.log(err);
+      }
+   });
+
+   HighPulseLowPulseMsData.findByIdAndUpdate("66a561cb4bb896edbb542cd0", { t: t }, function(err){
+      if (err){
+         console.log(err);
+      }
+   });
+
+   HighPulseLowPulseMsData.findByIdAndUpdate("66a561cb4bb896edbb542cd0", { d: d }, function(err){
+      if (err){
+         console.log(err);
+      }
+   });
 }
 
 function whiteBackGroundColor() {
