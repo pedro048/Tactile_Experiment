@@ -268,30 +268,30 @@ const level_1_frequency = new ExpTactileSensation({
 const level_2_frequency = new ExpTactileSensation({
    id_tactile: "2",
    vibrationLevel: "Level 2 (Frequency)",
-   frequency: "9Hz",
+   frequency: "7Hz",
    dutyCycle: "67%",
-   highPulseMs: "74ms",
-   lowPulseMs: "37ms",
-   hp: 285,
-   lp: 142,
-   hp_ms: 74,
-   lp_ms: 37,
-   t: 111,
+   highPulseMs: "95ms",
+   lowPulseMs: "48ms",
+   hp: 365,
+   lp: 185,
+   hp_ms: 95,
+   lp_ms: 48,
+   t: 143,
    d: 67
 });
 
 const level_3_frequency = new ExpTactileSensation({
    id_tactile: "3",
    vibrationLevel: "Level 3 (Frequency)",
-   frequency: "20Hz",
+   frequency: "15Hz",
    dutyCycle: "67%",
-   highPulseMs: "33ms",
-   lowPulseMs: "17ms",
-   hp: 127,
-   lp: 65,
-   hp_ms: 33,
-   lp_ms: 17,
-   t: 50,
+   highPulseMs: "45ms",
+   lowPulseMs: "22ms",
+   hp: 173,
+   lp: 85,
+   hp_ms: 45,
+   lp_ms: 22,
+   t: 67,
    d: 67
 });
 
@@ -822,7 +822,11 @@ function sendTactileSensation(hp_value, lp_value, hp_ms, lp_ms, t, d){
    var lp = lp_value + 9000;
 
    console.log("hp: ", hp);
-   console.log("lp: ", lp + "\n");
+   console.log("lp: ", lp);
+   console.log("hp_ms: ", hp_ms);
+   console.log("lp_ms: ", lp_ms);
+   console.log("t: ", t);
+   console.log("d: ", d + "\n");
    
    hp = hp.toString() + "\n";
    lp = lp.toString() + "\n";
