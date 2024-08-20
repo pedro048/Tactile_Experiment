@@ -7,21 +7,18 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-/*
+
+const uriWrite_1 = process.env.MONGODB_URI_WRITE_1;
+
 const uriRead = process.env.MONGODB_URI_READ;
 
-const uriWrite = process.env.MONGODB_URI_WRITE;
+const uriWrite_2 = process.env.MONGODB_URI_WRITE_2;
 
-const conn1 = mongoose.createConnection(uriRead, {useNewUrlParser: true});
+const conn1 = mongoose.createConnection(uriWrite_1, {useNewUrlParser: true});
 
-const conn2 = mongoose.createConnection(uriWrite, {useNewUrlParser: true});
-*/
+const conn2 = mongoose.createConnection(uriRead, {useNewUrlParser: true});
 
-const conn1 = mongoose.createConnection("mongodb+srv://pedroalves700:8dNIp4h6bNVMF6UY@cluster0.afo8cn1.mongodb.net/tactileExperimentDataDB", {useNewUrlParser: true});
-
-const conn2 = mongoose.createConnection("mongodb+srv://pedroalves700:8dNIp4h6bNVMF6UY@cluster0.afo8cn1.mongodb.net/expTactileSensationsDB", {useNewUrlParser: true});
-
-const conn3 = mongoose.createConnection("mongodb+srv://pedroalves700:8dNIp4h6bNVMF6UY@cluster0.afo8cn1.mongodb.net/tactileProjectDataDB", {useNewUrlParser: true});
+const conn3 = mongoose.createConnection(uriWrite_2, {useNewUrlParser: true});
 
 //--------------------------------------------------------------------------------------------
 
